@@ -28,12 +28,14 @@ The client can enter commands to retrieve stock prices or exit the program.
 ### Command Format
 
 - To retrieve a stock price: `GET <stock symbol>`
-
+  Example: `GET MSFT`
+- To retrieve prices for multiple stocks: `GET <stock symbol 1>,<stock symbol 2>,...`
+  Example: `GET AAPL,MSFT,GOOG`
 - To exit the program: `EXIT`
 
 ### Note
 
 - The server must be running before clients can connect.
-- Ensure the yfinance library is installed (pip install yfinance).
+- Ensure the yfinance library is installed.
 
 Feel free to explore and enhance the functionality as needed.
