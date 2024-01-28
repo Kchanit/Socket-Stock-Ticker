@@ -1,16 +1,19 @@
 import socket
 import threading
 import yfinance as yf
-import time
 
 
-def get_stock_price(symbol):
-    res = yf.Ticker(symbol)
-    if res.info['quoteType'] == "NONE":
-        return "Invalid symbol"
-    else:
-        price = '$'+str(res.info['currentPrice'])
-        return price
+def get_stocks_price(symbols):
+    message = "=============\n"
+    for symbol in symbols:
+        res = yf.Ticker(symbol)
+        if res.info['quoteType'] == "NONE":
+            message += f"{symbol}: Invalid symbol\n"
+        else:
+            price = '$'+str(res.info['currentPrice'])
+            message += f"{symbol}: {price}\n"
+    message += "============="
+    return message
 
 
 def handle_client(client_socket):
@@ -19,10 +22,10 @@ def handle_client(client_socket):
             data = client_socket.recv(1024).decode().upper()
 
             if data.startswith("GET"):
-                symbol = data.split()[1]
-                response = get_stock_price(symbol)
-                response = f"{symbol}: {response}"
-                client_socket.send(response.encode())
+                stocks_part = data.split()[1]
+                stocks_symbols = stocks_part.split(",")
+                message = get_stocks_price(stocks_symbols)
+                client_socket.send(message.encode())
 
             elif data == "EXIT":
                 goodbye_message = "Goodbye!"
