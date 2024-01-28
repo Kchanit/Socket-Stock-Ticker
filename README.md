@@ -27,9 +27,9 @@ The client can enter commands to retrieve stock prices or exit the program.
 
 ### Command Format
 
-- To retrieve a stock price: `GET <stock symbol>`
+- To retrieve a stock price: `GET <stock symbol>`  
   Example: `GET MSFT`
-- To retrieve prices for multiple stocks: `GET <stock symbol 1>,<stock symbol 2>,...`
+- To retrieve prices for multiple stocks: `GET <stock symbol 1>,<stock symbol 2>,...`  
   Example: `GET AAPL,MSFT,GOOG`
 - To exit the program: `EXIT`
 
